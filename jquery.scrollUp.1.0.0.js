@@ -1,8 +1,7 @@
 /*
 **    Preben Huybrechts
 **    jQuery scrollUp
-**    16th/April/2012
-**    http://andersonferminiano.com/jqueryscrollUp/
+**    16 April 2012
 **    You may use this script for free, but keep my credits.
 **    Thank you.
 */
