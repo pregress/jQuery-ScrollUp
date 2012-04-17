@@ -34,7 +34,7 @@
 
     $.fn.scrollUp.loadContent = function (obj, opts) {
         var target = opts.scrollTarget;
-        var mayLoadContent = $(target).scrollTop() < opts.heightOffset;
+        var mayLoadContent = $(obj).attr("scrollUp") == "enabled" && $(target).scrollTop() < opts.heightOffset ;
         if (mayLoadContent) {
             if (opts.beforeLoad != null) {
                 opts.beforeLoad();
