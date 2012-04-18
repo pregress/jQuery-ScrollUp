@@ -1,0 +1,44 @@
+body {
+	padding:0px;
+	margin: 0px;
+	background:#002F2F;
+	color:#EFECCA;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	height: 100%
+}
+
+
+#scrollupdemo {
+	width:600px;
+	margin:0px auto;
+	max-height: 100%;
+	overflow:auto;
+}
+
+#scrollupdemo ul {
+	list-style:none;
+	width:90%;
+	margin:0px auto;
+	padding:0px;
+}
+
+#scrollupdemo ul li {
+	margin:10px 0px;
+	width:100%;
+	background:#046380;
+	padding:5px 10px;
+	border-radius: 15px;
+	text-shadow: 2px 1px -1px #000000;
+}
+
+.loading {
+	background:#A7A37E;
+	color:#046380;
+	font-size:20px;
+	padding:5px 10px;
+	text-align:center;
+	width:450px;
+	margin:0px auto;
+	display:none;
+	border-radius: 5px;
+}

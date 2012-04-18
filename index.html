@@ -1,0 +1,67 @@
+<html>
+<head>
+	<title>Scroll Up jQuery demo</title>
+	<link href="style.css" rel="stylesheet">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="jquery.scrollUp.1.0.0.js"></script>
+	
+	<script type="text/javascript">
+	$(function(){
+		
+		$('#scrollupdemo').scrollTop($('#scrollupdemo').prop('scrollHeight'));
+	
+		$('#content').scrollUp({
+			'contentPage': 'democontent.html', // the page where you are searching for results
+			'contentType' : 'GET', // the ajax method for the request
+			'contentData': {}, // you can pass the children().size() to know where is the pagination
+			'scrollTarget': $('#scrollupdemo'), // who gonna scroll? in this example, the full window
+			'heightOffset': 100, // how many pixels before reaching end of the page would loading start? positives numbers only please
+			'beforeLoad': function(){ // before load, some function, maybe display a preloader div
+				$('#loading').fadeIn();	
+			},
+			'afterLoad': function(elementsLoaded){ // after loading, some function to animate results and hide a preloader div
+				 $('#loading').fadeOut();
+				 var i = 0;
+				 $(elementsLoaded).fadeInWithDelay();
+				 if ($('#content').children().size() > 100){ // if more than 100 results loaded stop (only for test)
+					$('#noresults').fadeIn();
+					$('#content').stopScrollUp();
+				 }
+			}
+		});
+		
+		// code for fade in element by element with delay
+		$.fn.fadeInWithDelay = function(){
+			var delay = 0;
+			return this.each(function(){
+				$(this).delay(delay).animate({opacity:1}, 200);
+				delay += 100;
+			});
+		};
+			   
+	});
+	</script>
+</head>
+<body>
+<div id="scrollupdemo">
+	<div class="loading" id="loading" style="display: none; ">Wait a moment... it's loading!</div>
+    <div class="loading" id="noresults">Sorry, no more results for your scroll up demo.</div>
+	<ul id="content">
+    	<li><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc elementum elementum felis. Quisque porta turpis nec eros consectetur lacinia. Pellentesque sagittis adipiscing egestas. </p></li>
+    	<li><p>Aliquam dapibus tincidunt odio. Phasellus volutpat dui nec ante volutpat euismod. </p></li>
+    	<li><p>Phasellus vehicula turpis nec dui facilisis eget condimentum risus ullamcorper. Nunc imperdiet, tortor ultrices aliquam eleifend, nisl turpis venenatis dui, at vestibulum magna tellus in tortor. </p></li>
+    	<li><p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris tincidunt nisi in tortor tincidunt ut ullamcorper lectus dapibus.  </p></li>
+        <li><p>Aenean interdum dui vitae purus molestie nec placerat nibh semper. Maecenas ultrices elementum dapibus. Aenean feugiat, metus in mattis mattis, justo nisi dignissim libero, ac volutpat dui nibh quis metus.</p></li>
+        <li><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc elementum elementum felis. Quisque porta turpis nec eros consectetur lacinia. Pellentesque sagittis adipiscing egestas. </p></li>
+    	<li><p>Aliquam dapibus tincidunt odio. Phasellus volutpat dui nec ante volutpat euismod. </p></li>
+    	<li><p>Phasellus vehicula turpis nec dui facilisis eget condimentum risus ullamcorper. Nunc imperdiet, tortor ultrices aliquam eleifend, nisl turpis venenatis dui, at vestibulum magna tellus in tortor. </p></li>
+    	<li><p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris tincidunt nisi in tortor tincidunt ut ullamcorper lectus dapibus.  </p></li>
+        <li><p>Aenean interdum dui vitae purus molestie nec placerat nibh semper. Maecenas ultrices elementum dapibus. Aenean feugiat, metus in mattis mattis, justo nisi dignissim libero, ac volutpat dui nibh quis metus.</p></li>
+        <li><p> Morbi eget tristique dui. Vivamus nec turpis eu nisi euismod accumsan sed in tortor. Maecenas laoreet leo ut tortor viverra facilisis.</p></li>
+		<li style="opacity: 1; "><p> Morbi eget tristique dui. Vivamus nec turpis eu nisi euismod accumsan sed in tortor. Maecenas laoreet leo ut tortor viverra facilisis.</p></li>
+        <li style="opacity: 1; "><p> Morbi eget tristique dui. Vivamus nec turpis eu nisi euismod accumsan sed in tortor. Maecenas laoreet leo ut tortor viverra facilisis.</p></li>
+    </ul>
+	
+</div>
+</body>
+</html>
