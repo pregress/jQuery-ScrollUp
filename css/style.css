@@ -1,16 +1,41 @@
 body {
 	padding:0px;
 	margin: 0px;
-	background:#002F2F;
-	color:#EFECCA;
-	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	background:#FAFAFC;
+	color:#FFFFFF;
+	font-family:"Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 	height: 100%
 }
 
+h1
+{
+	color:red;
+	text-align:center;
+}
+
+p
+{	
+	font-size: 16px;
+}
+
+a, a:visited
+{
+	color:red;
+}
+
+#info
+{
+	bottom: 0px;
+	margin: 10px;
+	width: 400px;
+	position:fixed;
+	background:#8CC6CC;
+	padding:5px 10px;
+}
 
 #scrollupdemo {
 	width:600px;
-	margin:0px auto;
+	margin:0px 0px 0px auto;
 	max-height: 100%;
 	overflow:auto;
 }
@@ -25,20 +50,17 @@ body {
 #scrollupdemo ul li {
 	margin:10px 0px;
 	width:100%;
-	background:#046380;
+	background:#8CC6CC;
 	padding:5px 10px;
-	border-radius: 15px;
-	text-shadow: 2px 1px -1px #000000;
 }
 
 .loading {
-	background:#A7A37E;
-	color:#046380;
+	background:#8CC6CC;
+	color:red;
 	font-size:20px;
 	padding:5px 10px;
 	text-align:center;
 	width:450px;
 	margin:0px auto;
 	display:none;
-	border-radius: 5px;
 }
