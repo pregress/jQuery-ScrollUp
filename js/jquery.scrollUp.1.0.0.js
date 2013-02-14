@@ -47,14 +47,21 @@
                 success: function (data) {
                     var lastScrollHeight = $(obj).prop('scrollHeight');
                     $(obj).prepend(data);
-                    $(target).animate({'scrollTop' : $(obj).prop('scrollHeight') - lastScrollHeight },1000);
+                    if (opts.animateScroll) {
+                        $(target).animate({'scrollTop' : $(obj).prop('scrollHeight') - lastScrollHeight },1000);
+                    } else {
+                        $(target).scrollTop($(obj).prop('scrollHeight') - lastScrollHeight);
+                    }
 
                     var objectsRendered = $(obj).children('[rel!=loaded]');
 
                     if (opts.afterLoad != null) {
                         opts.afterLoad(objectsRendered);
                     }
-                    opts.isLoading = false;
+                    var loadingTimeoutID = setTimeout(function(){
+                      opts.isLoading = false;
+                      clearTimeout(loadingTimeoutID);
+                    },1000);                    
                 },
                 dataType: 'html'
             });
@@ -81,12 +88,13 @@
 
     $.fn.scrollUp.defaults = {
         'contentPage': null,
-		'contentType': 'GET',
+        'contentType': 'GET',
         'contentData': {},
         'beforeLoad': null,
         'afterLoad': null,
         'scrollTarget': null,
         'heightOffset': 0,
-        'isLoading': false
+        'isLoading': false,
+        'animateScroll': true
     };
 })(jQuery);
