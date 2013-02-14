@@ -4,10 +4,6 @@
 **    16 April 2012
 **    You may use this script for free, but keep my credits.
 **    Thank you.
-**
-**    Improved by Eremin Andrey
-**    http://eremin.me
-**    14 February 2013
 */
 
 (function ($) {
@@ -51,7 +47,11 @@
                 success: function (data) {
                     var lastScrollHeight = $(obj).prop('scrollHeight');
                     $(obj).prepend(data);
-                    $(target).animate({'scrollTop' : $(obj).prop('scrollHeight') - lastScrollHeight },1000);
+                    if (opts.animateScroll) {
+                        $(target).animate({'scrollTop' : $(obj).prop('scrollHeight') - lastScrollHeight },1000);
+                    } else {
+                        $(target).scrollTop($(obj).prop('scrollHeight') - lastScrollHeight);
+                    }
 
                     var objectsRendered = $(obj).children('[rel!=loaded]');
 
@@ -88,12 +88,13 @@
 
     $.fn.scrollUp.defaults = {
         'contentPage': null,
-    'contentType': 'GET',
+        'contentType': 'GET',
         'contentData': {},
         'beforeLoad': null,
         'afterLoad': null,
         'scrollTarget': null,
         'heightOffset': 0,
-        'isLoading': false
+        'isLoading': false,
+        'animateScroll': true
     };
 })(jQuery);
