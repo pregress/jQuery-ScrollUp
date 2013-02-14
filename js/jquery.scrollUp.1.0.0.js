@@ -4,6 +4,10 @@
 **    16 April 2012
 **    You may use this script for free, but keep my credits.
 **    Thank you.
+**
+**    Improved by Eremin Andrey
+**    http://eremin.me
+**    14 February 2013
 */
 
 (function ($) {
@@ -54,7 +58,10 @@
                     if (opts.afterLoad != null) {
                         opts.afterLoad(objectsRendered);
                     }
-                    opts.isLoading = false;
+                    var loadingTimeoutID = setTimeout(function(){
+                      opts.isLoading = false;
+                      clearTimeout(loadingTimeoutID);
+                    },1000);                    
                 },
                 dataType: 'html'
             });
@@ -81,7 +88,7 @@
 
     $.fn.scrollUp.defaults = {
         'contentPage': null,
-		'contentType': 'GET',
+    'contentType': 'GET',
         'contentData': {},
         'beforeLoad': null,
         'afterLoad': null,
